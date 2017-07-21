@@ -40,3 +40,4 @@ function merge(firstArr,lastArr){
 
 
 console.log(mergeSort(arr))
+console.log([1,2,3,4].slice(0,5))

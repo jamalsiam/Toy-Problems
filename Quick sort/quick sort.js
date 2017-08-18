@@ -5,12 +5,12 @@ var quickSort=function (arr){
 		return arr;
 	}		
 
-	var arrLength=arr.length;
-	var pivotPosition=Math.floor(arrLength/2);
-	var pivotValue=arr[pivotPosition];
-	var less=[],
-		more=[],
-		same=[];
+	var arrLength=arr.length; //5 //4 //2 //2
+	var pivotPosition=Math.floor(arrLength/2); //3 //2 //1 //1
+	var pivotValue=arr[pivotPosition]; //1 //5 //3 // 19
+	var less=[],//  // 3,2  //2  //6// 
+		more=[],//3,2,5,19,6 // 19,6 //   
+		same=[];//1 // 5 // 3  //19//
 	for(var i=0;i<arrLength;i++){
 		if (arr[i]==pivotValue) {
 			same.push(arr[i]);
@@ -24,7 +24,13 @@ var quickSort=function (arr){
 	}
 
 	return quickSort(less).concat(same,quickSort(more))
+			//		  []		  [1]             [3,2,5,19,6]
+								// 1
+													//[3,2]	 			[5]		 	[19,6]
+													//[2][3][]			/5			[6][19][]
+												//    /2 /3             /5 			/6 /19
+								// [1,					2,3,			 5			 6, 19]
+
 }
 	
 	console.log(quickSort(xArr))
-

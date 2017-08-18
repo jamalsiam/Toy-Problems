@@ -16,71 +16,91 @@
 // list.removeHead(); //yields '4'
 // list.tail.value;   //yields '5';
 
-
-var LinkedList = function(){
-	//this.list={}
-  	this.head=null
-  	this.tail=null
-  	this.c=0;
-};
-
-LinkedList.prototype.addToTail = function(x,p=this.tail) {
-	// if (p===null){
-	// 	this.head=this.tail;
- //  	return p[0]=([x,null]);
- //  }else if (p[0].indexOf(null)!==-1){
- //  		p[0][1]=[x,null]
- //  		return;
- //  	}else{
- //  		return LinkedList.addToTail(x,p[1])
- //  }
- 	var add;
-    if (this.c===0){
-      	this.tail=this.Node(x);
-      	this.c++;
-      	this.head=this.tail;
-    }else{
-      add=this.tail;
-      this.tail=this.Node(x);
-
-      add.next=this.tail;
-    }
-    ++this.c;
-
-    return this.tail
-};
-
-LinkedList.prototype.removeHead = function() {
-	var heads=this.head;
-    if(this.c===1){
-      this.head=null;
-
-      return heads.value;
-
-    }else{
-    this.head=this.head.next;
-    }
-
-    --this.c;
-    return heads.value;
-  };
-
-
-LinkedList.prototype.contains = function(pos,head=this.head) {
-    for (var i = 0; i < this.c; i++) {
-      if (head.value===pos){
-        return true;
-      }
-      if (head.next!==null){
-      	head=head.next;
-      }
-    }
-    return false
-};
-
-LinkedList.prototype.Node = function(value) {
-  var nodes = {};
-  	nodes.value = value;
-  nodes.next = null;
-  return nodes;
+function linkedLists() {
+	this.Head=null;
 }
+
+linkedLists.prototype.isEmpty = function() {
+	if (this.Head==null) {
+		return true;
+	}
+	else{
+		return false;
+	}
+};
+linkedLists.prototype.size = function() {
+	var p=this.Head;
+	var cunter=0;
+	while(p !==null){
+		cunter=cunter+1;
+		p= p.next;
+	}
+	return cunter;
+};
+
+linkedLists.prototype.addToHead = function(val) {
+	var node={
+		data:val,
+		next:this.Head
+	}
+	this.Head=node;
+};
+
+linkedLists.prototype.addToTail = function(val) {
+	var p=this.Head
+	var node={
+		data:val,
+		next:null
+	}
+	if (this.isEmpty()) {
+		this.Head=node;
+		return;
+	}
+	else
+	{
+			var p=this.Head
+
+		while(p.next !==null){
+			p= p.next;
+		}
+		p.next=node;
+	}
+};
+
+
+
+
+linkedLists.prototype.remove = function() {
+	this.Head=this.Head.next;
+};
+
+linkedLists.prototype.print = function() {
+	var p=this.Head;
+	var outPut="[";
+	while(p !== null){
+		outPut+=p.data;
+		if(p.next !== null)
+			outPut+=",";
+		p=p.next;
+	}
+	outPut+="]"
+	console.log(outPut)
+};
+
+
+var list= new linkedLists();
+
+
+
+
+
+
+list.addToHead(1);
+list.addToHead(2);
+list.addToHead(3);
+list.addToTail(4);
+list.remove()
+list.addToHead(5);
+console.log(list.size(),"size")
+console.log( list.isEmpty(),'isEmpty');
+list.print();

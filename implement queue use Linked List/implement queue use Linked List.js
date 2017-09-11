@@ -22,15 +22,20 @@ Queue.prototype.addQueue = function(data) {
 };
 Queue.prototype.deQueue = function() {
 	var p=this.pointer;
+	var arr=[]
 	var c=0;
-	while(p){
-
+	while(this.pointer){
+		arr.push(this.pointer.data)
 	
-	p=p.next
-	
+	this.pointer=this.pointer.next
 	}
+	for (var i = arr.length - 2; i >= 0; i--) {
+		this.addQueue(arr[i])
+	}
+	
 
 };
+
 
 Queue.prototype.print = function() {
 	var record="["
@@ -51,9 +56,9 @@ q.addQueue(1)
 q.addQueue(2)
 q.addQueue(3)
 q.addQueue(4)
+q.deQueue()
 q.addQueue(5)
 q.deQueue()
-//q.deQueue()
-//q.deQueue()
+
 console.log(q.print())
 
